@@ -1,0 +1,35 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import UIKit
+import Swinject
+
+class {{ prefix }}{{ module_info.name }}ModuleBuilder: BaseBuilder {
+    
+    func build() -> Routable? {
+        
+        container.register({{ prefix }}{{ module_info.name }}ModuleRouter.self) { r in
+            let interactable = r.forceResolve({{ prefix }}{{ module_info.name }}ModuleInteractor.self)
+            let router = {{ prefix }}{{ module_info.name }}ModuleRouter(interactable: interactable)
+            
+            return router
+        }.inObjectScope(.container)
+        
+        container.register({{ prefix }}{{ module_info.name }}ModuleInteractor.self) { r in
+            {{ prefix }}{{ module_info.name }}ModuleInteractor()
+        }.initCompleted { r, c in
+                let moduleInteractor = c
+                moduleInteractor.router = r.resolve({{ prefix }}{{ module_info.name }}ModuleRouter.self)
+
+        }.inObjectScope(.container)
+        
+        return container.forceResolve({{ prefix }}{{ module_info.name }}ModuleRouter.self)
+        
+    }
+    
+}

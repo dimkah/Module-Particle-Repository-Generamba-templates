@@ -1,0 +1,20 @@
+# Template information section
+name: module
+summary: MPR module - module builder, module interactor, module router, module interactor test, module router test
+author: BBA
+version: 1.0.0
+license: MIT
+
+# The declarations for code files
+code_files:
+- {name: ModuleBuilder.swift, path: Code/ModuleBuilder.swift.liquid}
+- {name: ModuleInteractor.swift, path: Code/ModuleInteractor.swift.liquid}
+- {name: ModuleRouter.swift, path: Code/ModuleRouter.swift.liquid}
+
+# The declarations for test files
+test_files:
+- {name: ModuleInteractorTests.swift, path: Code/ModuleInteractorTests.swift.liquid}
+- {name: ModuleRouterTests.swift, path: Code/ModuleRouterTest.swift.liquid}
+
+# Template dependencies
+dependencies:

@@ -1,0 +1,22 @@
+# Template information section
+name: particle
+summary: MPR particle - particle builder, particle presenter, particle interactor, particle view, particle interactor test, particle presenter test
+author: BBA
+version: 1.0.0
+license: MIT
+
+# The declarations for code files
+code_files:
+- {name: ParticleBuilder.swift, path: Code/ParticleBuilder.swift.liquid}
+- {name: ParticleInteractor.swift, path: Code/ParticleInteractor.swift.liquid}
+- {name: ParticlePresenter.swift, path: Code/ParticlePresenter.swift.liquid}
+- {name: ParticleView.swift, path: Code/ParticleView.swift.liquid}
+
+# The declarations for test files
+test_files:
+- {name: ParticleInteractorTest.swift, path: Code/ParticleInteractorTest.swift.liquid}
+- {name: ParticlePresenterTest.swift, path: Code/ParticlePresenterTest.swift.liquid}
+
+# Template dependencies
+dependencies:
+ 

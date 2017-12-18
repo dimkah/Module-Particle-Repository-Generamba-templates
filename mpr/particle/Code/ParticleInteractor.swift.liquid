@@ -1,0 +1,28 @@
+//
+//  {{ prefix }}{{ module_info.name }}{{ module_info.file_name }}
+//  {{ module_info.project_name }}
+//
+//  Created by {{ developer.name }} on {{ date }}.
+//  Copyright {{ year }} {{ developer.company }}. All rights reserved.
+//
+
+import Foundation
+
+protocol {{ prefix }}{{ module_info.name }}ParticleInteractorInputProtocol: ParticleInteractorInputProtocol {
+    
+}
+
+protocol {{ prefix }}{{ module_info.name }}ParticleInteractorOutputProtocol: ParticleInteractorOutputProtocol {
+    
+}
+
+protocol {{ prefix }}{{ module_info.name }}ParticleInteractorResultProtocol: ParticleInteractorResultProtocol {
+    
+}
+
+class {{ prefix }}{{ module_info.name }}ParticleInteractor: BaseParticleInteractor, {{ prefix }}{{ module_info.name }}ParticleInteractorInputProtocol {
+    
+    weak var moduleInteractor: {{ prefix }}{{ module_info.name }}ParticleInteractorResultProtocol?
+    weak var presenter: {{ prefix }}{{ module_info.name }}ParticleInteractorOutputProtocol?
+    
+}
