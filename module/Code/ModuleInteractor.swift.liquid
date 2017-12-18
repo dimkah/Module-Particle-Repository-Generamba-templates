@@ -20,7 +20,7 @@ protocol {{ prefix }}{{ module_info.name }}ModuleInteractorResultProtocol: Modul
     
 }
 
-class {{ prefix }}{{ module_info.name }}ModuleInteractor: BaseModuleInteractor, {{ prefix }}{{ module_info.name }}ParticleInteractorResultProtocol {
+class {{ prefix }}{{ module_info.name }}ModuleInteractor: BaseModuleInteractor /* XXXParticleInteractorResultProtocol */ {
     
     weak var router: ({{ prefix }}{{ module_info.name }}ModuleInteractorOutputProtocol & Routable)?
     
