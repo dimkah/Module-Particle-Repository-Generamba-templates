@@ -13,8 +13,8 @@ code_files:
 
 # The declarations for test files
 test_files:
-- {name: ModuleInteractorTest.swift, path: Code/ModuleInteractorTest.swift.liquid}
-- {name: ModuleRouterTest.swift, path: Code/ModuleRouterTest.swift.liquid}
+- {name: ModuleInteractorTest.swift, path: Tests/ModuleInteractorTest.swift.liquid}
+- {name: ModuleRouterTest.swift, path: Tests/ModuleRouterTest.swift.liquid}
 
 # Template dependencies
 dependencies:

@@ -14,8 +14,8 @@ code_files:
 
 # The declarations for test files
 test_files:
-- {name: ParticleInteractorTest.swift, path: Code/ParticleInteractorTest.swift.liquid}
-- {name: ParticlePresenterTest.swift, path: Code/ParticlePresenterTest.swift.liquid}
+- {name: ParticleInteractorTest.swift, path: Tests/ParticleInteractorTest.swift.liquid}
+- {name: ParticlePresenterTest.swift, path: Tests/ParticlePresenterTest.swift.liquid}
 
 # Template dependencies
 dependencies:
