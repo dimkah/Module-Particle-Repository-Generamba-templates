@@ -10,26 +10,26 @@ class {{ prefix }}{{ module_info.name }}ParticleBuilder: BaseBuilder {
     
     func build(moduleInteractor: {{ prefix }}{{ module_info.name }}ParticleInteractorResultProtocol) -> UIViewController {
         
-        container.register({{ prefix }}{{ module_info.name }}ParticleInteractor.self) { r in
+        container.register({{ prefix }}{{ module_info.name }}ParticleInteractor.self) { resolver in
             {{ prefix }}{{ module_info.name }}ParticleInteractor()
-        }.initCompleted { r, interactor in
+        }.initCompleted { resolver, interactor in
             interactor.moduleInteractor = moduleInteractor
-            interactor.presenter = r.resolve({{ prefix }}{{ module_info.name }}ParticlePresenter.self)
+            interactor.presenter = resolver.resolve({{ prefix }}{{ module_info.name }}ParticlePresenter.self)
         }.inObjectScope(.container)
         
-        container.register({{ prefix }}{{ module_info.name }}ParticlePresenter.self) { r in
+        container.register({{ prefix }}{{ module_info.name }}ParticlePresenter.self) { resolver in
             {{ prefix }}{{ module_info.name }}ParticlePresenter()
-        }.initCompleted { r, presenter in
-            presenter.interactor = r.resolve({{ prefix }}{{ module_info.name }}ParticleInteractor.self)
-            presenter.view = r.resolve({{ prefix }}{{ module_info.name }}ParticleView.self)
+        }.initCompleted { resolver, presenter in
+            presenter.interactor = resolver.resolve({{ prefix }}{{ module_info.name }}ParticleInteractor.self)
+            presenter.view = resolver.resolve({{ prefix }}{{ module_info.name }}ParticleView.self)
         }.inObjectScope(.container)
         
-        container.register({{ prefix }}{{ module_info.name }}ParticleView.self) { r in
-            let view: {{ prefix }}{{ module_info.name }}ParticleView = UIStoryboard(storyboard: .{{ prefix }}{{ module_info.name }}).instantiateViewController()
+        container.register({{ prefix }}{{ module_info.name }}ParticleView.self) { [unowned self] resolver in
+            let view: {{ prefix }}{{ module_info.name }}ParticleView = UIStoryboard(storyboard: .{{ prefix }}{{ module_info.name }}, bundle: Bundle(for: self.classForCoder)).instantiateViewController()
             return view
-        }.initCompleted { r, view in
-            view.lifecycleListener = r.resolve({{ prefix }}{{ module_info.name }}ParticlePresenter.self)
-            view.presenter = r.resolve({{ prefix }}{{ module_info.name }}ParticlePresenter.self)
+        }.initCompleted { resolver, view in
+            view.lifecycleListener = resolver.resolve({{ prefix }}{{ module_info.name }}ParticlePresenter.self)
+            view.presenter = resolver.resolve({{ prefix }}{{ module_info.name }}ParticlePresenter.self)
         }.inObjectScope(.container)
         
         return container.forceResolve({{ prefix }}{{ module_info.name }}ParticleView.self)
