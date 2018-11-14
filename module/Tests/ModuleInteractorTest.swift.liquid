@@ -10,14 +10,21 @@ import XCTest
 @testable import {{ module_info.product_module_name }}
 
 class {{ prefix }}{{ module_info.name }}ModuleInteractorTests: XCTestCase {
-    
+    var interactor: {{ prefix }}{{ module_info.name }}ModuleInteractor!
+    //var router: {{ prefix }}{{ module_info.name }}ModuleRouterTestProtocolMock!
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        interactor = {{ prefix }}{{ module_info.name }}ModuleInteractor()
+        //router = {{ prefix }}{{ module_info.name }}ModuleRouterTestProtocolMock()
+        //interactor.router = router
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        interactor = nil
+        //router = nil
         super.tearDown()
     }
     
@@ -26,11 +33,7 @@ class {{ prefix }}{{ module_info.name }}ModuleInteractorTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-    
 }
+
+// sourcery: AutoMockable
+//extension {{ prefix }}{{ module_info.name }}ModuleRouterTestProtocol: {{ prefix }}{{ module_info.name }}ModuleInteractorOutputProtocol, Routable {}

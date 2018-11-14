@@ -13,19 +13,16 @@ class {{ prefix }}{{ module_info.name }}ModuleBuilder: BaseBuilder {
     
     func build() -> Routable? {
         
-        container.register({{ prefix }}{{ module_info.name }}ModuleRouter.self) { r in
-            let interactable = r.forceResolve({{ prefix }}{{ module_info.name }}ModuleInteractor.self)
+        container.register({{ prefix }}{{ module_info.name }}ModuleRouter.self) { resolver in
+            let interactable = resolver.forceResolve({{ prefix }}{{ module_info.name }}ModuleInteractor.self)
             let router = {{ prefix }}{{ module_info.name }}ModuleRouter(interactable: interactable)
-            
             return router
         }.inObjectScope(.container)
         
-        container.register({{ prefix }}{{ module_info.name }}ModuleInteractor.self) { r in
+        container.register({{ prefix }}{{ module_info.name }}ModuleInteractor.self) { resolver in
             {{ prefix }}{{ module_info.name }}ModuleInteractor()
-        }.initCompleted { r, c in
-                let moduleInteractor = c
-                moduleInteractor.router = r.resolve({{ prefix }}{{ module_info.name }}ModuleRouter.self)
-
+        }.initCompleted { resolver, moduleInteractor in
+                moduleInteractor.router = resolver.resolve({{ prefix }}{{ module_info.name }}ModuleRouter.self)
         }.inObjectScope(.container)
         
         return container.forceResolve({{ prefix }}{{ module_info.name }}ModuleRouter.self)
